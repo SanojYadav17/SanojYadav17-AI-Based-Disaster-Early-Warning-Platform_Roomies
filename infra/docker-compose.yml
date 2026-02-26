@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  # ─── Backend API ────────────────────────────────
+  backend:
+    build:
+      context: ..
+      dockerfile: backend/Dockerfile
+    container_name: disaster-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - ENV=dev
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ../data:/app/data
+      - ../ml_service/models_store:/app/ml_service/models_store
+      - ../logs:/app/logs
+    depends_on:
+      - mongodb
+    restart: unless-stopped
+
+  # ─── Frontend ───────────────────────────────────
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    container_name: disaster-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  # ─── MongoDB ────────────────────────────────────
+  mongodb:
+    image: mongo:6.0
+    container_name: disaster-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    restart: unless-stopped
+
+volumes:
+  mongo_data:

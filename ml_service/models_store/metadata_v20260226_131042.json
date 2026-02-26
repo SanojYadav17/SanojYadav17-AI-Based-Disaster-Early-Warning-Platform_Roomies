@@ -1,0 +1,203 @@
+{
+  "version": "v20260226_131042",
+  "model_type": "random_forest",
+  "metrics": {
+    "name": "Random Forest",
+    "accuracy": 0.963,
+    "roc_auc": 0.0,
+    "precision": 0.9641,
+    "recall": 0.963,
+    "f1": 0.9619,
+    "confusion_matrix": [
+      [
+        5,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        443,
+        0,
+        71
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        1,
+        0,
+        1478
+      ]
+    ]
+  },
+  "feature_names": [
+    "temperature_c",
+    "rainfall_mm",
+    "humidity_pct",
+    "wind_speed_kmh",
+    "pressure_hpa",
+    "river_level_m",
+    "seismic_signal",
+    "rainfall_gauge_mm",
+    "elevation",
+    "flood_prone",
+    "cyclone_prone",
+    "earthquake_zone",
+    "hour",
+    "day_of_week",
+    "month",
+    "day_of_year",
+    "is_monsoon",
+    "season_sin",
+    "season_cos",
+    "temperature_c_roll3",
+    "temperature_c_roll7",
+    "temperature_c_roll_std3",
+    "temperature_c_trend",
+    "rainfall_mm_roll3",
+    "rainfall_mm_roll7",
+    "rainfall_mm_roll_std3",
+    "rainfall_mm_trend",
+    "humidity_pct_roll3",
+    "humidity_pct_roll7",
+    "wind_speed_kmh_roll3",
+    "wind_speed_kmh_roll7",
+    "pressure_hpa_roll3",
+    "pressure_hpa_roll7",
+    "region_risk_index",
+    "temperature_c_zscore",
+    "rainfall_mm_zscore",
+    "wind_speed_kmh_zscore",
+    "pressure_hpa_zscore",
+    "total_anomaly_score",
+    "rainfall_intensity_index",
+    "heat_index",
+    "wind_severity_index",
+    "river_level_deviation",
+    "river_flood_risk",
+    "pressure_drop",
+    "low_pressure_flag"
+  ],
+  "class_names": [
+    "Cyclone",
+    "Earthquake",
+    "Flood",
+    "Heatwave",
+    NaN
+  ],
+  "training_timestamp": "2026-02-26T13:10:42.608921",
+  "all_results": {
+    "logistic_regression": {
+      "name": "Logistic Regression",
+      "accuracy": 0.92,
+      "roc_auc": 0.0,
+      "precision": 0.9311,
+      "recall": 0.92,
+      "f1": 0.9232,
+      "confusion_matrix": [
+        [
+          6,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          479,
+          1,
+          32
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          12,
+          112,
+          0,
+          1355
+        ]
+      ]
+    },
+    "random_forest": {
+      "name": "Random Forest",
+      "accuracy": 0.963,
+      "roc_auc": 0.0,
+      "precision": 0.9641,
+      "recall": 0.963,
+      "f1": 0.9619,
+      "confusion_matrix": [
+        [
+          5,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          443,
+          0,
+          71
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          1,
+          0,
+          1478
+        ]
+      ]
+    },
+    "ensemble": {
+      "name": "Ensemble",
+      "accuracy": 0.947,
+      "roc_auc": 0.0,
+      "precision": 0.9473,
+      "recall": 0.947,
+      "f1": 0.947,
+      "confusion_matrix": [
+        [
+          6,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          459,
+          0,
+          53
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          3,
+          47,
+          0,
+          1429
+        ]
+      ]
+    }
+  },
+  "files": {
+    "model": "model_v20260226_131042.joblib",
+    "scaler": "scaler_v20260226_131042.joblib",
+    "label_encoder": "label_encoder_v20260226_131042.joblib"
+  }
+}

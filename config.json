@@ -1,0 +1,43 @@
+{
+    "app_name": "Disaster Early Warning Platform",
+    "version": "1.0.0",
+    "env": "dev",
+    "backend": {
+        "host": "0.0.0.0",
+        "port": 8000,
+        "debug": true,
+        "cors_origins": ["http://localhost:3000"]
+    },
+    "ml_service": {
+        "host": "0.0.0.0",
+        "port": 5000,
+        "model_dir": "ml_service/models_store",
+        "retrain_interval_hours": 24
+    },
+    "database": {
+        "type": "sqlite",
+        "sqlite_path": "backend/disaster_warnings.db",
+        "mongo_uri": "mongodb://localhost:27017",
+        "mongo_db": "disaster_platform"
+    },
+    "alert_thresholds": {
+        "low_risk_max": 40,
+        "medium_risk_max": 70,
+        "high_risk_min": 71
+    },
+    "data_sources": {
+        "weather_api_url": "https://api.openweathermap.org/data/2.5/weather",
+        "weather_api_key": "YOUR_API_KEY_HERE",
+        "refresh_interval_minutes": 15
+    },
+    "alerts": {
+        "email_enabled": false,
+        "sms_enabled": false,
+        "rate_limit_per_region_minutes": 60,
+        "escalation_enabled": true
+    },
+    "logging": {
+        "level": "INFO",
+        "file": "logs/platform.log"
+    }
+}

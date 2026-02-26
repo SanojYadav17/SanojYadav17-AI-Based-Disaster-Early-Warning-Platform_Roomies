@@ -1,0 +1,47 @@
+# Byte-compiled / optimized
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+*.env
+
+# Logs
+logs/
+*.log
+
+# Database
+*.db
+*.sqlite3
+
+# Node
+frontend/node_modules/
+frontend/build/
+
+# ML Models (large files)
+ml_service/models_store/*.joblib
+
+# Data (keep generators, ignore large files)
+data/raw/*.csv
+data/processed/*.csv
