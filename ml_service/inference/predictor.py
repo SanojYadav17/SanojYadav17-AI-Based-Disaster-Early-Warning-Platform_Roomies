@@ -72,10 +72,15 @@ class DisasterPredictor:
         pred_proba = self.model.predict_proba(X_scaled)[0]
 
         disaster_type = self.label_encoder.inverse_transform([pred_class])[0]
+        # Handle NaN disaster type (label encoder may return nan for "no disaster")
+        if disaster_type is None or (isinstance(disaster_type, float) and np.isnan(disaster_type)):
+            disaster_type = "None"
+        disaster_type = str(disaster_type)
         max_probability = float(pred_proba.max())
 
         # Risk score (0-100)
-        if disaster_type == "None":
+        if disaster_type == "None" or disaster_type == "nan":
+            disaster_type = "None"
             risk_score = int(np.clip((1 - max_probability) * 40, 0, 40))
         else:
             risk_score = int(np.clip(max_probability * 100, 0, 100))
@@ -94,7 +99,8 @@ class DisasterPredictor:
         # Class probabilities
         class_probabilities = {}
         for i, class_name in enumerate(self.label_encoder.classes_):
-            class_probabilities[class_name] = round(float(pred_proba[i]), 4)
+            key = str(class_name) if class_name is not None and not (isinstance(class_name, float) and np.isnan(class_name)) else "None"
+            class_probabilities[key] = round(float(pred_proba[i]), 4)
 
         return {
             "disaster_type": disaster_type,
