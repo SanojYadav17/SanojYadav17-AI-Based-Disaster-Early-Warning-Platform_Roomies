@@ -1,0 +1,102 @@
+[
+  {
+    "id": "R001",
+    "name": "Mumbai Coast",
+    "lat": 19.076,
+    "lon": 72.877,
+    "elevation": 14,
+    "flood_prone": true,
+    "cyclone_prone": true,
+    "earthquake_zone": 3
+  },
+  {
+    "id": "R002",
+    "name": "Delhi NCR",
+    "lat": 28.704,
+    "lon": 77.102,
+    "elevation": 216,
+    "flood_prone": true,
+    "cyclone_prone": false,
+    "earthquake_zone": 4
+  },
+  {
+    "id": "R003",
+    "name": "Chennai",
+    "lat": 13.083,
+    "lon": 80.271,
+    "elevation": 6,
+    "flood_prone": true,
+    "cyclone_prone": true,
+    "earthquake_zone": 3
+  },
+  {
+    "id": "R004",
+    "name": "Assam Valley",
+    "lat": 26.14,
+    "lon": 91.736,
+    "elevation": 55,
+    "flood_prone": true,
+    "cyclone_prone": false,
+    "earthquake_zone": 5
+  },
+  {
+    "id": "R005",
+    "name": "Rajasthan Desert",
+    "lat": 26.912,
+    "lon": 70.901,
+    "elevation": 225,
+    "flood_prone": false,
+    "cyclone_prone": false,
+    "earthquake_zone": 2
+  },
+  {
+    "id": "R006",
+    "name": "Kerala Coast",
+    "lat": 10.851,
+    "lon": 76.271,
+    "elevation": 10,
+    "flood_prone": true,
+    "cyclone_prone": true,
+    "earthquake_zone": 3
+  },
+  {
+    "id": "R007",
+    "name": "Gujarat Coast",
+    "lat": 22.258,
+    "lon": 71.192,
+    "elevation": 15,
+    "flood_prone": true,
+    "cyclone_prone": true,
+    "earthquake_zone": 5
+  },
+  {
+    "id": "R008",
+    "name": "Uttarakhand Hills",
+    "lat": 30.067,
+    "lon": 79.017,
+    "elevation": 1850,
+    "flood_prone": true,
+    "cyclone_prone": false,
+    "earthquake_zone": 5
+  },
+  {
+    "id": "R009",
+    "name": "Odisha Coast",
+    "lat": 20.296,
+    "lon": 85.825,
+    "elevation": 7,
+    "flood_prone": true,
+    "cyclone_prone": true,
+    "earthquake_zone": 3
+  },
+  {
+    "id": "R010",
+    "name": "Andhra Pradesh",
+    "lat": 15.912,
+    "lon": 79.74,
+    "elevation": 100,
+    "flood_prone": true,
+    "cyclone_prone": true,
+    "earthquake_zone": 2
+  }
+]
