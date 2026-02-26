@@ -1,5 +1,5 @@
 {
-  "version": "v20260226_143635",
+  "version": "v20260226_140122",
   "model_type": "random_forest",
   "metrics": {
     "name": "Random Forest",
@@ -90,7 +90,7 @@
     "Heatwave",
     NaN
   ],
-  "training_timestamp": "2026-02-26T14:36:36.044027",
+  "training_timestamp": "2026-02-26T14:01:22.536702",
   "all_results": {
     "logistic_regression": {
       "name": "Logistic Regression",
@@ -264,8 +264,8 @@
     }
   },
   "files": {
-    "model": "model_v20260226_143635.joblib",
-    "scaler": "scaler_v20260226_143635.joblib",
-    "label_encoder": "label_encoder_v20260226_143635.joblib"
+    "model": "model_v20260226_140122.joblib",
+    "scaler": "scaler_v20260226_140122.joblib",
+    "label_encoder": "label_encoder_v20260226_140122.joblib"
   }
 }

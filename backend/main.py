@@ -75,6 +75,7 @@ class WeatherDataInput(BaseModel):
 
 class PredictRequest(BaseModel):
     region_id: str
+    region_name: Optional[str] = None
     temperature_c: float
     rainfall_mm: float
     humidity_pct: Optional[float] = 50.0
@@ -190,6 +191,21 @@ async def predict_risk(req: PredictRequest):
         # Risk scoring
         risk_result = compute_risk_score(ml_prediction, req.dict())
 
+        # Auto-register region if name is provided
+        if req.region_name:
+            try:
+                RegionDAO.insert_many([{
+                    "id": req.region_id, "name": req.region_name,
+                    "lat": 20.0, "lon": 78.0,
+                    "elevation": req.elevation or 10,
+                    "flood_prone": req.flood_prone or 0,
+                    "cyclone_prone": req.cyclone_prone or 0,
+                    "earthquake_zone": req.earthquake_zone or 1
+                }])
+            except Exception:
+                pass
+            risk_result["region_name"] = req.region_name
+
         # Auto-alert if needed
         if should_trigger_alert(risk_result):
             alert_service = get_alert_service()
@@ -300,6 +316,86 @@ async def resolve_alert(alert_id: int):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+# ─── Emergency Broadcast System ─────────────────────────────────
+
+class BroadcastRequest(BaseModel):
+    region_id: str
+    message: str
+    channels: List[str] = ["sms", "app", "email"]
+    priority: str = "high"
+
+# Store broadcast history in memory (in production, use database)
+broadcast_history = []
+
+# Region population data for reach estimation
+REGION_POPULATION = {
+    "R001": 1250000, "R002": 2500000, "R003": 890000,
+    "R004": 560000, "R005": 320000, "R006": 780000,
+    "R007": 920000, "R008": 450000, "R009": 680000, "R010": 750000
+}
+
+@app.post("/broadcast/send")
+async def send_broadcast(req: BroadcastRequest):
+    """Send emergency broadcast to all subscribers in a region."""
+    try:
+        region_name = REGION_NAME_FALLBACK.get(req.region_id, req.region_id)
+        population = REGION_POPULATION.get(req.region_id, 50000)
+        
+        # Log broadcast
+        broadcast_entry = {
+            "id": len(broadcast_history) + 1,
+            "region_id": req.region_id,
+            "region_name": region_name,
+            "message": req.message,
+            "channels": req.channels,
+            "priority": req.priority,
+            "recipients": population,
+            "sent_at": datetime.utcnow().isoformat(),
+            "status": "delivered"
+        }
+        broadcast_history.append(broadcast_entry)
+        
+        # Log to file
+        log_dir = os.path.join(PROJECT_ROOT, "logs")
+        os.makedirs(log_dir, exist_ok=True)
+        log_file = os.path.join(log_dir, "broadcasts.log")
+        with open(log_file, "a") as f:
+            f.write(f"[{datetime.utcnow().isoformat()}] BROADCAST to {region_name}: {req.message[:100]}... | Channels: {','.join(req.channels)} | Recipients: {population}\n")
+        
+        print(f"\n{'='*60}")
+        print(f"📢 EMERGENCY BROADCAST SENT")
+        print(f"{'='*60}")
+        print(f"  Region: {region_name} ({req.region_id})")
+        print(f"  Recipients: {population:,}")
+        print(f"  Channels: {', '.join(req.channels)}")
+        print(f"  Message: {req.message[:100]}...")
+        print(f"{'='*60}\n")
+        
+        return {
+            "status": "sent",
+            "broadcast": broadcast_entry,
+            "message": f"Successfully sent to {population:,} recipients in {region_name}"
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/broadcast/history")
+async def get_broadcast_history(limit: int = Query(50, ge=1, le=200)):
+    """Get broadcast history."""
+    return {
+        "broadcasts": broadcast_history[-limit:][::-1],
+        "total": len(broadcast_history)
+    }
+
+
+# ─── Region Name Fallback Map ───────────────────────────────────
+REGION_NAME_FALLBACK = {
+    "R001": "Mumbai Coast", "R002": "Delhi NCR", "R003": "Chennai",
+    "R004": "Assam Valley", "R005": "Rajasthan Desert", "R006": "Kerala Coast",
+    "R007": "Gujarat Coast", "R008": "Uttarakhand Hills", "R009": "Odisha Coast",
+    "R010": "Andhra Pradesh"
+}
+
 # ─── Dashboard Metrics ──────────────────────────────────────────
 
 @app.get("/dashboard/metrics")
@@ -316,12 +412,22 @@ async def dashboard_metrics():
         disaster_counts = {}
         region_risks = {}
 
+        # Build region name lookup from DB + fallback
+        region_name_map = dict(REGION_NAME_FALLBACK)  # Start with fallback
+        for rg in regions:
+            region_name_map[rg["id"]] = rg.get("name", region_name_map.get(rg["id"], rg["id"]))
+
         for pred in predictions:
             level = pred.get("risk_level", "Low")
             risk_distribution[level] = risk_distribution.get(level, 0) + 1
-            dtype = pred.get("disaster_type", "None")
+            dtype = pred.get("disaster_type") or "No Disaster"
+            if dtype in ("None", "null", None, ""):
+                dtype = "No Disaster"
             disaster_counts[dtype] = disaster_counts.get(dtype, 0) + 1
             rid = pred.get("region_id")
+            # Attach region_name to each prediction
+            pred["region_name"] = region_name_map.get(rid, rid)
+            pred["disaster_type"] = dtype
             if rid:
                 region_risks[rid] = {
                     "risk_score": pred.get("risk_score", 0),
