@@ -34,11 +34,11 @@ from app.services.ingestion_service import DataIngestionService
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Startup and shutdown events."""
-    print("🚀 Starting Disaster Early Warning Platform Backend...")
+    print("[START] Starting Disaster Early Warning Platform Backend...")
     init_db()
-    print("✅ Database initialized.")
+    print("[OK] Database initialized.")
     yield
-    print("👋 Shutting down...")
+    print("[STOP] Shutting down...")
 
 
 # ─── App ────────────────────────────────────────────────────────

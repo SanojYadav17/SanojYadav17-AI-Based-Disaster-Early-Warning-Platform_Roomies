@@ -39,7 +39,7 @@ class ModelMonitor:
         with open(baseline_path, "w") as f:
             json.dump(self.baseline_stats, f, indent=2, default=str)
 
-        print(f"✅ Baseline set with {len(self.baseline_stats['means'])} features.")
+        print(f"[OK] Baseline set with {len(self.baseline_stats['means'])} features.")
         return self.baseline_stats
 
     def load_baseline(self):

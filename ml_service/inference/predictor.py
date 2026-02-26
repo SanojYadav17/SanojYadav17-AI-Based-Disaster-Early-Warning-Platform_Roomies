@@ -45,10 +45,10 @@ class DisasterPredictor:
 
             self.feature_names = self.metadata.get("feature_names", [])
             self.loaded = True
-            print(f"✅ Model loaded: {self.metadata.get('model_type')} ({self.metadata.get('version')})")
+            print(f"[OK] Model loaded: {self.metadata.get('model_type')} ({self.metadata.get('version')})")
             return True
         except Exception as e:
-            print(f"❌ Failed to load model: {e}")
+            print(f"[ERROR] Failed to load model: {e}")
             return False
 
     def predict(self, feature_dict: dict) -> dict:

@@ -28,9 +28,9 @@ class ExplainabilityEngine:
         try:
             import shap
             self.shap_available = True
-            print("✅ SHAP available for explanations.")
+            print("[OK] SHAP available for explanations.")
         except ImportError:
-            print("⚠️ SHAP not installed. Using fallback feature importance.")
+            print("[WARN] SHAP not installed. Using fallback feature importance.")
 
     def init_shap(self, X_background):
         """Initialize SHAP explainer with background data."""
@@ -49,7 +49,7 @@ class ExplainabilityEngine:
                 self.explainer = shap.KernelExplainer(self.model.predict_proba, bg)
                 print("  Using KernelExplainer")
             except Exception as e:
-                print(f"  ⚠️ SHAP init failed: {e}")
+                print(f"  [WARN] SHAP init failed: {e}")
                 self.shap_available = False
 
     def explain_prediction(self, X_single, prediction_result: dict) -> dict:
