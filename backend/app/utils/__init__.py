@@ -1,1 +1,1 @@
-# Utils __init__
+"""Utility functions."""

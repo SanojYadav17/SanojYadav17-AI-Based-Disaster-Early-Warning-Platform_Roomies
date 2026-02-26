@@ -1,1 +1,1 @@
-# Routes __init__
+"""API routes module."""

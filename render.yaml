@@ -1,0 +1,24 @@
+services:
+  # Backend API Service
+  - type: web
+    name: disaster-api
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+      - key: ENV
+        value: production
+    plan: free
+
+  # Frontend Static Site
+  - type: web
+    name: disaster-frontend
+    runtime: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/build
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://disaster-api.onrender.com
+    plan: free

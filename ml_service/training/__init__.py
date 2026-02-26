@@ -1,1 +1,1 @@
-# Training __init__
+"""ML training pipeline module."""

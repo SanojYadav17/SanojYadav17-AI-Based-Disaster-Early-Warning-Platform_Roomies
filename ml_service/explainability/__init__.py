@@ -1,1 +1,1 @@
-# Explainability __init__
+"""Model explainability module (SHAP/LIME)."""

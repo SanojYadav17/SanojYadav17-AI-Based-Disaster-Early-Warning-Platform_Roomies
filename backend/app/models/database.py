@@ -8,7 +8,7 @@ import os
 import json
 from datetime import datetime
 
-DB_PATH = os.path.join(os.path.dirname(__file__), "..", "..", "backend", "disaster_warnings.db")
+DB_PATH = os.path.join(os.path.dirname(__file__), "..", "..", "disaster_warnings.db")
 
 
 def get_db():

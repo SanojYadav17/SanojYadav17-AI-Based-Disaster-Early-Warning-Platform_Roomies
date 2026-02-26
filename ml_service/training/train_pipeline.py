@@ -81,7 +81,7 @@ def train_all_models(X_train, y_train, X_test, y_test, label_encoder):
     # 1. Logistic Regression
     print("\n🔹 Training Logistic Regression...")
     lr = LogisticRegression(
-        max_iter=1000, class_weight="balanced", multi_class="multinomial",
+        max_iter=1000, class_weight="balanced",
         solver="lbfgs", random_state=42
     )
     lr.fit(X_train, y_train)
@@ -103,7 +103,7 @@ def train_all_models(X_train, y_train, X_test, y_test, label_encoder):
         xgb = XGBClassifier(
             n_estimators=300, max_depth=8, learning_rate=0.1,
             subsample=0.8, colsample_bytree=0.8,
-            use_label_encoder=False, eval_metric="mlogloss",
+            eval_metric="mlogloss",
             random_state=42, n_jobs=-1
         )
         xgb.fit(X_train, y_train)

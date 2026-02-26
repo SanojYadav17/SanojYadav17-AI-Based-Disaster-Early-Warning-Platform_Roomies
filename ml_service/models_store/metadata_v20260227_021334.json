@@ -1,5 +1,5 @@
 {
-  "version": "v20260226_143635",
+  "version": "v20260227_021334",
   "model_type": "random_forest",
   "metrics": {
     "name": "Random Forest",
@@ -90,7 +90,7 @@
     "Heatwave",
     NaN
   ],
-  "training_timestamp": "2026-02-26T14:36:36.044027",
+  "training_timestamp": "2026-02-27T02:13:35.099123",
   "all_results": {
     "logistic_regression": {
       "name": "Logistic Regression",
@@ -196,17 +196,17 @@
     },
     "lightgbm": {
       "name": "LightGBM",
-      "accuracy": 0.9615,
+      "accuracy": 0.961,
       "roc_auc": 0.0,
-      "precision": 0.9621,
-      "recall": 0.9615,
-      "f1": 0.9603,
+      "precision": 0.9616,
+      "recall": 0.961,
+      "f1": 0.9595,
       "confusion_matrix": [
         [
-          3,
+          2,
           0,
           0,
-          3
+          4
         ],
         [
           0,
@@ -264,8 +264,8 @@
     }
   },
   "files": {
-    "model": "model_v20260226_143635.joblib",
-    "scaler": "scaler_v20260226_143635.joblib",
-    "label_encoder": "label_encoder_v20260226_143635.joblib"
+    "model": "model_v20260227_021334.joblib",
+    "scaler": "scaler_v20260227_021334.joblib",
+    "label_encoder": "label_encoder_v20260227_021334.joblib"
   }
 }

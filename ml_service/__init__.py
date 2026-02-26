@@ -1,1 +1,1 @@
-# ML Service __init__
+"""ML Service package for disaster prediction."""

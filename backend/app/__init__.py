@@ -1,1 +1,1 @@
-# Backend __init__
+"""Backend application package."""

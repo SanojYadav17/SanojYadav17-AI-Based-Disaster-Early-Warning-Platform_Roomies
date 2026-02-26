@@ -1,1 +1,1 @@
-# Models __init__
+"""Database models module."""

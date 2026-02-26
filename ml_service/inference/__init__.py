@@ -1,1 +1,1 @@
-# Inference __init__
+"""ML inference and prediction module."""
