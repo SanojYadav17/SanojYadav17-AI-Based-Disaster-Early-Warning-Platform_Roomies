@@ -1,27 +1,35 @@
-# 🌍 AI-Based Disaster Early Warning Platform
+# 🌍 AI-Based Disaster Early Warning Platform  
 
 A production-grade, end-to-end AI-driven system for **early detection and alert generation** of floods, earthquakes, cyclones, and extreme weather. Built with **Machine Learning, FastAPI, React, and real-time data integration**.
 
 ---
 
-## 📋 Table of Contents
+## 👥 Team Members
 
-- [Overview](#overview)
-- [Architecture](#architecture)
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Quick Start](#quick-start)
-- [Setup Guide](#setup-guide)
-- [API Reference](#api-reference)
-- [ML Pipeline](#ml-pipeline)
-- [Frontend Dashboard](#frontend-dashboard)
-- [Deployment](#deployment)
-- [MLOps & Monitoring](#mlops--monitoring)
-- [Ethics & Limitations](#ethics--limitations)
+- Sanoj Yadav  
+- Saket Verma  
+- Abhishek Mishra  
+- Samarpit Gupta  
 
 ---
 
-## 🎯 Overview
+## 📋 Table of Contents  
+- [Overview](#overview)  
+- [Architecture](#architecture)  
+- [Features](#features)  
+- [Project Structure](#project-structure)  
+- [Quick Start](#quick-start)  
+- [Setup Guide](#setup-guide)  
+- [API Reference](#api-reference)  
+- [ML Pipeline](#ml-pipeline)  
+- [Frontend Dashboard](#frontend-dashboard)  
+- [Deployment](#deployment)  
+- [MLOps & Monitoring](#mlops--monitoring)  
+- [Ethics & Limitations](#ethics--limitations)  
+
+---
+
+## 🎯 Overview  
 
 This platform provides:
 
@@ -37,7 +45,7 @@ This platform provides:
 
 ---
 
-## 🏗️ Architecture
+## 🏗️ Architecture  
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -63,7 +71,7 @@ This platform provides:
 
 ---
 
-## 📁 Project Structure
+## 📁 Project Structure  
 
 ```
 disaster prediction/
@@ -123,49 +131,49 @@ disaster prediction/
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start  
 
-### Prerequisites
-- Python 3.10+
-- Node.js 18+ (for frontend)
-- pip
+### Prerequisites  
+- Python 3.10+  
+- Node.js 18+ (for frontend)  
+- pip  
 
-### 1. Install Python Dependencies
+### 1. Install Python Dependencies  
 ```bash
 cd "disaster prediction"
 pip install -r requirements.txt
 ```
 
-### 2. Generate Demo Data
+### 2. Generate Demo Data  
 ```bash
 python data/generate_demo_data.py
 ```
 
-### 3. Initialize Database & Train ML Model
+### 3. Initialize Database & Train ML Model  
 ```bash
 python -c "from backend.app.models.database import init_db; init_db()"
 python ml_service/training/train_pipeline.py
 ```
 
-### 4. Start Backend API
+### 4. Start Backend API  
 ```bash
 uvicorn backend.main:app --reload --port 8000
 ```
 
-### 5. Start Frontend (separate terminal)
+### 5. Start Frontend (separate terminal)  
 ```bash
 cd frontend
 npm install
 npm start
 ```
 
-### 6. Open Dashboard
-- Frontend: **http://localhost:3000**
-- API Docs: **http://localhost:8000/docs**
+### 6. Open Dashboard  
+- Frontend: **http://localhost:3000**  
+- API Docs: **http://localhost:8000/docs**  
 
 ---
 
-## 🔌 API Reference
+## 🔌 API Reference  
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
@@ -183,7 +191,7 @@ npm start
 | `/models` | GET | Model versions |
 | `/models/retrain` | POST | Trigger retraining |
 
-### Example: Predict Risk
+### Example: Predict Risk  
 ```bash
 curl -X POST http://localhost:8000/predict-risk \
   -H "Content-Type: application/json" \
@@ -201,38 +209,38 @@ curl -X POST http://localhost:8000/predict-risk \
 
 ---
 
-## 🧠 ML Pipeline
+## 🧠 ML Pipeline  
 
-### Models Trained
-1. **Logistic Regression** — Baseline
-2. **Random Forest** — Feature-rich tree ensemble
-3. **XGBoost** — Gradient boosting
-4. **LightGBM** — Fast gradient boosting
-5. **Ensemble** — Soft voting combination of all models
+### Models Trained  
+1. **Logistic Regression** — Baseline  
+2. **Random Forest** — Feature-rich tree ensemble  
+3. **XGBoost** — Gradient boosting  
+4. **LightGBM** — Fast gradient boosting  
+5. **Ensemble** — Soft voting combination of all models  
 
-### Features (40+)
-- **Temporal**: Rolling averages, trends, seasonality, monsoon flag
-- **Spatial**: Region risk index, elevation, flood/cyclone/earthquake flags
-- **Statistical**: Z-scores, anomaly scores, volatility
-- **Domain**: Rainfall intensity, heat index, wind severity, river deviation
+### Features (40+)  
+- **Temporal**: Rolling averages, trends, seasonality, monsoon flag  
+- **Spatial**: Region risk index, elevation, flood/cyclone/earthquake flags  
+- **Statistical**: Z-scores, anomaly scores, volatility  
+- **Domain**: Rainfall intensity, heat index, wind severity, river deviation  
 
-### Evaluation Metrics
-- Accuracy, ROC-AUC, Precision, Recall, F1
-- Confusion Matrix
-- Cross-validation (5-fold)
+### Evaluation Metrics  
+- Accuracy, ROC-AUC, Precision, Recall, F1  
+- Confusion Matrix  
+- Cross-validation (5-fold)  
 
-### Risk Scoring
+### Risk Scoring  
 ```
 Final Score = ML Score + Rule-Based Adjustments (capped at 100)
 
-🟢 Low Risk:    0-40  → Monitor
-🟠 Medium Risk: 41-70 → Prepare
-🔴 High Risk:   71-100 → Evacuate
+🟢 Low Risk:    0-40  → Monitor  
+🟠 Medium Risk: 41-70 → Prepare  
+🔴 High Risk:   71-100 → Evacuate  
 ```
 
 ---
 
-## 🖥️ Frontend Dashboard
+## 🖥️ Frontend Dashboard  
 
 | Page | Features |
 |------|----------|
@@ -244,45 +252,45 @@ Final Score = ML Score + Rule-Based Adjustments (capped at 100)
 
 ---
 
-## 🐳 Deployment
+## 🐳 Deployment  
 
-### Docker
+### Docker  
 ```bash
 cd infra
 docker-compose up --build
 ```
 
-### Manual
+### Manual  
 See Quick Start above.
 
-### Environment Configs
-- `.env` — Development defaults
-- `config.json` — App configuration
+### Environment Configs  
+- `.env` — Development defaults  
+- `config.json` — App configuration  
 
 ---
 
-## 📊 MLOps & Monitoring
+## 📊 MLOps & Monitoring  
 
-- **Model Versioning**: Timestamped model artifacts + metadata JSON
-- **Drift Detection**: Z-score based feature distribution comparison
-- **Performance Monitoring**: F1 degradation check with auto-retrain flag
-- **Bias Auditing**: Per-region false alarm rate comparison
-- **Logging**: JSONL logs for predictions, alerts, drift, and performance
-
----
-
-## ⚠️ Ethics & Limitations
-
-- Predictions are probabilistic, not deterministic — use alongside expert judgment
-- Earthquake prediction is inherently limited by current science
-- Model is trained on synthetic data — production requires real data sources
-- Regular bias audits across regions are recommended
-- Confidence scores reflect model certainty, not event certainty
-- System designed as a support tool, not a replacement for human decision-making
+- **Model Versioning**: Timestamped model artifacts + metadata JSON  
+- **Drift Detection**: Z-score based feature distribution comparison  
+- **Performance Monitoring**: F1 degradation check with auto-retrain flag  
+- **Bias Auditing**: Per-region false alarm rate comparison  
+- **Logging**: JSONL logs for predictions, alerts, drift, and performance  
 
 ---
 
-## 📄 License
+## ⚠️ Ethics & Limitations  
+
+- Predictions are probabilistic, not deterministic — use alongside expert judgment  
+- Earthquake prediction is inherently limited by current science  
+- Model is trained on synthetic data — production requires real data sources  
+- Regular bias audits across regions are recommended  
+- Confidence scores reflect model certainty, not event certainty  
+- System designed as a support tool, not a replacement for human decision-making  
+
+---
+
+## 📄 License  
 
 This project is built for educational and demonstration purposes.
 
